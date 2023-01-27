@@ -415,6 +415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_soundManager: {fileID: 5812165010260564879, guid: bd36cfdb5854bbd46921760781a8f3b4, type: 3}
+  m_fadeObject: {fileID: 4549937550422124537, guid: 06f3be15befb2cf4b9f4f4c870f300c2, type: 3}
 --- !u!4 &1591893695
 Transform:
   m_ObjectHideFlags: 0
