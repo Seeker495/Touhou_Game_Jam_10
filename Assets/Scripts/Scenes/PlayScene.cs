@@ -10,6 +10,8 @@ public class PlayScene : MonoBehaviour
     {
         SoundPlayer.SetUp(Instantiate(m_soundManager, null));
         SoundPlayer.PlayBGM(eBGM.TITLE);
+        Fade.SetUp();
+        Fade.FadeIn(2.0f);
     }
 
     // Update is called once per frame

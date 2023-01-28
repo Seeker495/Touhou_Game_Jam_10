@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Canvas
   - UI_Camera
+  - Button
   layers:
   - Default
   - TransparentFX
