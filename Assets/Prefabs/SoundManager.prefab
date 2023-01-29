@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_bgmList:
   - type: 0
-    clip: {fileID: 8300000, guid: e047ef4ef63bc254687ec75a513a7c66, type: 3}
+    clip: {fileID: 8300000, guid: 00966a43337a54c46b9df39bbe736cd2, type: 3}
     volume: 0.16
     isLoopMusic: 0
     startSecond: 0

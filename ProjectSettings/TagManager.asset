@@ -7,6 +7,7 @@ TagManager:
   - Canvas
   - UI_Camera
   - Button
+  - Obstacle
   layers:
   - Default
   - TransparentFX
