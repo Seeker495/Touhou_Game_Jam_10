@@ -10,7 +10,7 @@ public class TitleScene : MonoBehaviour
 {
     [SerializeField] private GameObject m_soundManager;
     [SerializeField] private GameObject m_fadeObject;
-
+    [SerializeField] private GameObject m_focusObject;
     private List<GameObject> m_titleItems = new List<GameObject>();
     private List<System.Action> m_titleItemFunctions = new List<System.Action>();
     private int m_index;
@@ -19,8 +19,10 @@ public class TitleScene : MonoBehaviour
     {
         SoundPlayer.SetUp(Instantiate(m_soundManager, null));
         SoundPlayer.PlayBGM(eBGM.TITLE);
+#if !UNITY_EDITOR
         Fade.SetUp(m_fadeObject);
         Fade.FadeIn(2.0f);
+#endif
         m_titleItems.AddRange(GameObject.FindGameObjectsWithTag("Button"));
         m_titleItemFunctions.Add(PressStart);
         m_titleItemFunctions.Add(PressOption);
@@ -50,11 +52,13 @@ public class TitleScene : MonoBehaviour
     private void SelectUp(InputAction.CallbackContext context)
     {
         m_index = (--m_index + m_titleItems.Count) % m_titleItems.Count;
+        FocusItem();
     }
 
     private void SelectDown(InputAction.CallbackContext context)
     {
         m_index = ++m_index % m_titleItems.Count;
+        FocusItem();
     }
 
     private void Enter(InputAction.CallbackContext context)
@@ -79,5 +83,10 @@ public class TitleScene : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+
+    private void FocusItem()
+    {
+        m_focusObject.transform.DOLocalMoveY((-120.0f * m_index) + -117.0f, 0.2f);
     }
 }
