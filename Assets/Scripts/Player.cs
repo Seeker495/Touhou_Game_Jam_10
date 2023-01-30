@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     [SerializeField] private Animator m_snowBallAnimator;
     private Vector2 m_startPosition;
     private Vector2 m_initVelocity;
+    [SerializeField] private float m_jumpForce;
+    [SerializeField] private float m_speed;
     private int m_life = 1;
     public enum ePlayerState
     {
@@ -52,40 +54,53 @@ public class Player : MonoBehaviour
         m_initVelocity = Vector2.right;
         m_rigidBody2D.velocity = m_initVelocity;
         m_startPosition = m_rigidBody2D.position;
-        m_rigidBody2D.velocity = Vector2.right * Parameter.PLAYER_SPEED;
+        m_rigidBody2D.velocity = Vector2.right * m_speed;
 
-        m_rigidBody2D.AddForce(Vector2.right * 10, ForceMode2D.Force);
+        m_rigidBody2D.AddForce(Vector2.right * m_speed, ForceMode2D.Force);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(m_rigidBody2D.position.y <= -10)
+        {
+            GameOver();
+        }
         Parameter.TOTAL_DISTANCE = (long)(m_rigidBody2D.position.x - m_startPosition.x);
         Debug.Log(Parameter.TOTAL_DISTANCE);
     }
 
     private void FixedUpdate()
     {
-        if (m_rigidBody2D.velocity.y < 0) m_state = ePlayerState.FALL;
-        m_rigidBody2D.velocity = new Vector2(Mathf.Clamp(m_rigidBody2D.velocity.x, Parameter.PLAYER_SPEED * 0.5f, m_rigidBody2D.velocity.x), m_rigidBody2D.velocity.y);
+        if (m_state == ePlayerState.JUMP && m_rigidBody2D.velocity.y < 0) m_state = ePlayerState.FALL;
+        m_rigidBody2D.velocity = new Vector2(Mathf.Clamp(m_rigidBody2D.velocity.x, m_speed * 0.5f, m_rigidBody2D.velocity.x), m_rigidBody2D.velocity.y);
         SetAnimation();
     }
 
     private void Jump(InputAction.CallbackContext context)
     {
-        m_rigidBody2D.AddForce(Vector2.up * 3, ForceMode2D.Impulse);
+        m_rigidBody2D.AddForce(Vector2.up * m_jumpForce, ForceMode2D.Impulse);
         m_state = ePlayerState.JUMP;
     }
 
     private void Descend(InputAction.CallbackContext context)
     {
+        if (m_state == ePlayerState.JUMP || m_state == ePlayerState.FALL) return;
         if(m_rigidBody2D.velocity.y < 0)
-            m_rigidBody2D.velocity = Vector2.right * 10 * 1.5f;
+            m_rigidBody2D.velocity = Vector2.right * m_speed * 1.2f;
     }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if(collision.collider.CompareTag("Map"))
+        m_state = ePlayerState.RUNNING;
+    }
+
+
 
     private void DescendEnd(InputAction.CallbackContext context)
     {
-        m_rigidBody2D.velocity = Vector2.right * 10;
+        m_rigidBody2D.velocity = Vector2.right * m_speed;
     }
 
     private void SetAnimation()
@@ -127,6 +142,10 @@ public class Player : MonoBehaviour
         return !IsAlive();
     }
 
+    private void GameOver()
+    {
+        SceneManager.LoadSceneAsync("Result");
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (IsDead())

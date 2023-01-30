@@ -9,6 +9,7 @@ TagManager:
   - Button
   - Obstacle
   - Grid
+  - Map
   layers:
   - Default
   - TransparentFX
@@ -45,4 +46,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Sprite
+    uniqueID: 945411113
     locked: 0

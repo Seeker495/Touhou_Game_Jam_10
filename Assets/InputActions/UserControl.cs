@@ -330,7 +330,7 @@ public partial class @UserControl : IInputActionCollection2, IDisposable
                     ""id"": ""cb9dc5af-4b5c-4db4-8389-8abc7bf4b9bd"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""initialStateCheck"": false
                 }
             ],

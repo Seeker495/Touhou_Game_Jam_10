@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TitleScene : MonoBehaviour
@@ -68,7 +69,11 @@ public class TitleScene : MonoBehaviour
 
     private void PressStart()
     {
+#if !UNITY_EDITOR
         Fade.FadeOut_with_Scene(this, "Play", 2.0f);
+#else
+        SceneManager.LoadSceneAsync("Play");
+#endif
     }
 
     private void PressOption()
