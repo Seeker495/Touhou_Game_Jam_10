@@ -59,11 +59,12 @@ public class IntroScene : MonoBehaviour
 		
 		if (timer > 1050) {
 			// start game
-			#if !UNITY_EDITOR
-        Fade.FadeOut_with_Scene(this, "Play", 2.0f);
-#else
+			// TODO: put it not in FixedUpdate() so it'd be called only once
+			//#if !UNITY_EDITOR
+       // Fade.FadeOut_with_Scene(this, "Play", 2.0f);
+//#else
         SceneManager.LoadSceneAsync("Play");
-#endif
+//#endif
 		}
 	}
 }
