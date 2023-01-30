@@ -70,9 +70,9 @@ public class TitleScene : MonoBehaviour
     private void PressStart()
     {
 #if !UNITY_EDITOR
-        Fade.FadeOut_with_Scene(this, "Play", 2.0f);
+        Fade.FadeOut_with_Scene(this, "Intro", 2.0f);
 #else
-        SceneManager.LoadSceneAsync("Play");
+        SceneManager.LoadSceneAsync("Intro");
 #endif
     }
 
