@@ -5,28 +5,23 @@ using UnityEngine.Tilemaps;
 
 public class Map : MonoBehaviour
 {
+    [SerializeField] private GameObject m_copyObject;
     [SerializeField] private Tilemap m_tileMap;
     [SerializeField] private List<Tile> m_tiles;
     private int m_startPosition = -12;
     private bool m_canGenerate = false;
-    private const long GENERATE_DISTANCE = 20;
+    private const long GENERATE_DISTANCE = 100;
+    private int m_count = 0;
     // Start is called before the first frame update
     void Start()
     {
-        RandomGenerate();
+        //RandomGenerate();
     }
 
     // Update is called once per frame
     void Update()
     {
-
-    }
-
-    private void FixedUpdate()
-    {
-        if (m_canGenerate) return;
-
-        if(Parameter.TOTAL_DISTANCE % (GENERATE_DISTANCE / 2) == 0)
+        if (Parameter.TOTAL_DISTANCE % (GENERATE_DISTANCE) == GENERATE_DISTANCE - 10)
         {
             m_canGenerate = true;
             RandomGenerate();
@@ -34,20 +29,16 @@ public class Map : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        //if (m_canGenerate) return;
+
+
+    }
+
     void RandomGenerate()
     {
-        List<Vector3Int> positions = new List<Vector3Int>();
-        List<Tile> tiles = new List<Tile>();
-        for(int i= 0; i < GENERATE_DISTANCE; ++i)
-        {
-            m_startPosition++;
-            positions.Add(new Vector3Int(m_startPosition, -7));
-            tiles.Add(m_tiles[4]);
-            positions.Add(new Vector3Int(m_startPosition, -6));
-            tiles.Add(m_tiles[1]);
-
-        }
-
-        m_tileMap.SetTiles(positions.ToArray(), tiles.ToArray());
+        m_count++;
+        Instantiate(m_copyObject, new Vector3((GENERATE_DISTANCE + 1) * m_count, 0.0f, 0.0f), Quaternion.identity, transform);
     }
 }
