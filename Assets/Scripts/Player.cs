@@ -72,7 +72,9 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (m_rigidBody2D.velocity.y < -0.1f) m_state = ePlayerState.FALL;
+		if (m_rigidBody2D.velocity.y < -0.1f) { 
+			m_state = ePlayerState.FALL;
+		}
         m_rigidBody2D.velocity = new Vector2(Mathf.Clamp(m_rigidBody2D.velocity.x, m_speed * 0.5f, m_rigidBody2D.velocity.x), m_rigidBody2D.velocity.y);
         SetAnimation();
     }
@@ -80,15 +82,15 @@ public class Player : MonoBehaviour
     private void Jump(InputAction.CallbackContext context)
     {
 		if (m_state == ePlayerState.JUMP || m_state == ePlayerState.FALL) return;
-		m_state = ePlayerState.JUMP;
         m_rigidBody2D.AddForce(Vector2.up * m_jumpForce, ForceMode2D.Impulse);
+		m_state = ePlayerState.JUMP;
     }
 
     private void Descend(InputAction.CallbackContext context)
     {
         if (m_state != ePlayerState.JUMP) return;
 		m_state = ePlayerState.FALL;
-		m_rigidBody2D.AddForce(Vector2.down * 100.0f, ForceMode2D.Impulse);
+		m_rigidBody2D.AddForce(Vector2.down * 1000.0f, ForceMode2D.Impulse);
         if(m_rigidBody2D.velocity.y < 0)
             DescendEnd(context);
 		
