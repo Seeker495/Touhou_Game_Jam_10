@@ -390,7 +390,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 406863905}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3, y: -2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -4798,7 +4798,7 @@ MonoBehaviour:
   m_playerAnimator: {fileID: 778056334}
   m_snowBallAnimator: {fileID: 703189424}
   m_jumpForce: 6
-  m_speed: 5
+  m_speed: 6
 --- !u!50 &1548429662
 Rigidbody2D:
   serializedVersion: 4
@@ -5026,7 +5026,7 @@ Transform:
   m_GameObject: {fileID: 1915218313}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 406863906}
