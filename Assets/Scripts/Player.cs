@@ -72,7 +72,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-		if (m_rigidBody2D.velocity.y < -0.1f) { 
+		if (m_state == ePlayerState.JUMP && m_rigidBody2D.velocity.y < -0.1f) { 
 			m_state = ePlayerState.FALL;
 		}
         m_rigidBody2D.velocity = new Vector2(Mathf.Clamp(m_rigidBody2D.velocity.x, m_speed * 0.5f, m_rigidBody2D.velocity.x), m_rigidBody2D.velocity.y);

@@ -18,8 +18,10 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Parameter.TOTAL_DISTANCE >= 100)
-        transform.DOMoveX(m_player.transform.position.x, 1.0f);
+        if(Parameter.TOTAL_DISTANCE >= 50) {
+        transform.DOMoveX(m_player.transform.position.x + 5.0f, 0.5f);
+		transform.DOMoveY(m_player.transform.position.y, 0.5f);
+		}
     }
 
     void Attack()

@@ -4798,7 +4798,7 @@ MonoBehaviour:
   m_playerAnimator: {fileID: 778056334}
   m_snowBallAnimator: {fileID: 703189424}
   m_jumpForce: 6
-  m_speed: 6
+  m_speed: 5
 --- !u!50 &1548429662
 Rigidbody2D:
   serializedVersion: 4
