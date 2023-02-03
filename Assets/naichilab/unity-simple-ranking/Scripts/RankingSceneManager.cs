@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using System.Linq;
 using NCMB;
 using NCMB.Extensions;
+using UnityEngine.SceneManagement;
 
 namespace naichilab
 {
@@ -66,6 +67,11 @@ namespace naichilab
             }
         }
 
+        private void OnDestroy()
+        {
+            SceneManager.LoadSceneAsync("Title");
+        }
+
         void Start()
         {
             sendScoreButton.interactable = false;
@@ -80,7 +86,7 @@ namespace naichilab
         IEnumerator GetHighScoreAndRankingBoard()
         {
             scoreLabel.text = _lastScore.TextForDisplay;
-            captionLabel.text = string.Format("{0}ランキング", _board.BoardName);
+            captionLabel.text = string.Format("{0}Ranking", _board.BoardName);
 
             //ハイスコア取得
             {

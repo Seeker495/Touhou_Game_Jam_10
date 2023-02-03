@@ -67,16 +67,16 @@ public class Player : MonoBehaviour
             GameOver();
         }
         Parameter.TOTAL_DISTANCE = (long)(m_rigidBody2D.position.x - m_startPosition.x);
-        Debug.Log(Parameter.TOTAL_DISTANCE);
     }
 
     private void FixedUpdate()
     {
-		if (m_state == ePlayerState.JUMP && m_rigidBody2D.velocity.y < -0.1f) { 
+		if (m_state == ePlayerState.JUMP && m_rigidBody2D.velocity.y < -0.1f) {
 			m_state = ePlayerState.FALL;
 		}
         m_rigidBody2D.velocity = new Vector2(Mathf.Clamp(m_rigidBody2D.velocity.x, m_speed * 0.5f, m_rigidBody2D.velocity.x), m_rigidBody2D.velocity.y);
         SetAnimation();
+        Debug.Log(m_rigidBody2D.velocity.y);
     }
 
     private void Jump(InputAction.CallbackContext context)
@@ -93,8 +93,9 @@ public class Player : MonoBehaviour
 		m_rigidBody2D.AddForce(Vector2.down * 1000.0f, ForceMode2D.Impulse);
         if(m_rigidBody2D.velocity.y < 0)
             DescendEnd(context);
-		
+
     }
+
 
     private void OnCollisionStay2D(Collision2D collision)
     {
